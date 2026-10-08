@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SERVICE - ENG EMAKA GROUP</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+        }
+
+        .top {
+            background: #073b4c;
+            color: white;
+            padding: 18px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #06d6a0;
+        }
+
+        .group {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #073b4c, #118ab2);
+            color: white;
+            text-align: center;
+            padding: 55px 20px;
+        }
+
+        .hero h1 {
+            font-size: 38px;
+            margin: 0 0 15px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #06d6a0;
+            color: #073b4c;
+            padding: 11px 28px;
+            border-radius: 25px;
+            font-weight: bold;
+            margin-top: 12px;
+        }
+
+        .content {
+            max-width: 1100px;
+            margin: auto;
+            padding: 35px 18px;
+            text-align: center;
+        }
+
+        .content h2 {
+            color: #073b4c;
+            margin-bottom: 10px;
+        }
+
+        .intro {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            line-height: 1.7;
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 22px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 28px 20px;
+            border-radius: 16px;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.10);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-7px);
+        }
+
+        .icon {
+            width: 75px;
+            height: 75px;
+            margin: 0 auto 15px;
+            border-radius: 50%;
+            background: #06d6a0;
+            color: #073b4c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .card h3 {
+            color: #118ab2;
+            margin: 10px 0;
+        }
+
+        .card p {
+            line-height: 1.6;
+        }
+
+        .request {
+            margin-top: 40px;
+            background: #073b4c;
+            color: white;
+            padding: 30px 20px;
+            border-radius: 16px;
+        }
+
+        .request h2 {
+            color: white;
+            margin-top: 0;
+        }
+
+        .request p {
+            line-height: 1.6;
+        }
+
+        .button {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 14px 30px;
+            background: #06d6a0;
+            color: #073b4c;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 8px;
+        }
+
+        .button:hover {
+            background: #04b989;
+        }
+
+        .back {
+            display: inline-block;
+            margin: 30px 0 10px;
+            padding: 13px 28px;
+            background: #118ab2;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 8px;
+        }
+
+        .back:hover {
+            background: #0d7496;
+        }
+
+        footer {
+            background: #073b4c;
+            color: white;
+            text-align: center;
+            padding: 18px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 500px) {
+
+            .top {
+                justify-content: center;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 29px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="top">
+
+    <div class="logo">
+        TEAL
+    </div>
+
+    <div class="group">
+        ENG EMAKA GROUP
+    </div>
+
+</header>
+
+
+<main>
+
+<section class="hero">
+
+    <h1>
+        HUDUMA ZETU
+    </h1>
+
+    <p>
+        Karibu ENG EMAKA GROUP.<br>
+        Tunatoa huduma za teknolojia, umeme na usalama.
+    </p>
+
+    <div class="badge">
+        SERVICE
+    </div>
+
+</section>
+
+
+<section class="content">
+
+    <h2>
+        Huduma za ENG EMAKA GROUP
+    </h2>
+
+    <p class="intro">
+        Tunatoa huduma bora kwa nyumba,
+        biashara, ofisi na maeneo mbalimbali.
+        Wasiliana nasi kwa ajili ya kupata
+        huduma unayohitaji.
+    </p>
+
+
+    <div class="services">
+
+
+        <!-- ELECTRICAL -->
+
+        <div class="card">
+
+            <div class="icon">
+                ELEC
+            </div>
+
+            <h3>
+                Electrical
+            </h3>
+
+            <p>
+                Ufungaji, ukarabati na matengenezo
+                ya mifumo ya umeme kwa nyumba,
+                biashara na ofisi.
+            </p>
+
+        </div>
+
+
+        <!-- WIFI -->
+
+        <div class="card">
+
+            <div class="icon">
+                WIFI
+            </div>
+
+            <h3>
+                Wi-Fi &amp; Networking
+            </h3>
+
+            <p>
+                Ufungaji wa Wi-Fi, router,
+                LAN na networking kwa nyumba,
+                biashara na ofisi.
+            </p>
+
+        </div>
+
+
+        <!-- CCTV -->
+
+        <div class="card">
+
+            <div class="icon">
+                CCTV
+            </div>
+
+            <h3>
+                CCTV Camera
+            </h3>
+
+            <p>
+                Ufungaji wa CCTV Camera,
+                mipangilio ya kamera na mifumo
+                ya ulinzi wa maeneo.
+            </p>
+
+        </div>
+
+
+        <!-- SECURITY -->
+
+        <div class="card">
+
+            <div class="icon">
+                SAFE
+            </div>
+
+            <h3>
+                Security Systems
+            </h3>
+
+            <p>
+                Ufungaji wa mifumo ya kisasa
+                ya usalama kwa nyumba,
+                biashara na taasisi.
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="request">
+
+        <h2>
+            Unahitaji Huduma?
+        </h2>
+
+        <p>
+            Wasiliana na ENG EMAKA GROUP
+            ili kupata huduma unayohitaji.
+        </p>
+
+        <a
+            class="button"
+            href="request.html">
+
+            OMBA HUDUMA
+
+        </a>
+
+    </div>
+
+
+    <a
+        class="back"
+        href="index.html">
+
+        RUDI NYUMBANI
+
+    </a>
+
+</section>
+
+</main>
+
+
+<footer>
+
+    <p>
+        Copyright 2026 - TEAL - ENG EMAKA GROUP
+    </p>
+
+</footer>
+
+</body>
+</html>

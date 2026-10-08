@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>ADMIN LOGIN - TEAL</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f1f5f9;
+        color: #073b4c;
+    }
+
+    .top {
+        background: #073b4c;
+        color: white;
+        text-align: center;
+        padding: 25px 15px;
+    }
+
+    .logo {
+        font-size: 32px;
+        font-weight: bold;
+        color: #06d6a0;
+    }
+
+    .group {
+        margin-top: 8px;
+        font-weight: bold;
+    }
+
+    .container {
+        width: 92%;
+        max-width: 450px;
+        margin: 60px auto;
+    }
+
+    .login-box {
+        background: white;
+        padding: 30px;
+        border-radius: 16px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.10);
+    }
+
+    h2 {
+        text-align: center;
+        margin-top: 0;
+    }
+
+    label {
+        display: block;
+        margin-top: 18px;
+        margin-bottom: 7px;
+        font-weight: bold;
+    }
+
+    input {
+        width: 100%;
+        padding: 14px;
+        border: 1px solid #ccd6dd;
+        border-radius: 8px;
+        font-size: 16px;
+    }
+
+    button {
+        width: 100%;
+        margin-top: 25px;
+        padding: 14px;
+        border: none;
+        border-radius: 8px;
+        background: #06d6a0;
+        color: #073b4c;
+        font-size: 17px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    button:disabled {
+        background: #9ca3af;
+        cursor: not-allowed;
+    }
+
+    .message {
+        display: none;
+        margin-top: 18px;
+        padding: 13px;
+        border-radius: 8px;
+        line-height: 1.5;
+    }
+
+    .error {
+        display: block;
+        background: #ffe8e8;
+        color: #9b2226;
+    }
+
+    .back {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        text-decoration: none;
+        color: #118ab2;
+        font-weight: bold;
+    }
+
+    footer {
+        background: #073b4c;
+        color: white;
+        text-align: center;
+        padding: 18px;
+        margin-top: 40px;
+    }
+</style>
+```
+
+</head>
+
+<body>
+
+<header class="top">
+
+```
+<div class="logo">
+    TEAL
+</div>
+
+<div class="group">
+    ENG EMAKA GROUP - ADMIN
+</div>
+```
+
+</header>
+
+<div class="container">
+
+```
+<div class="login-box">
+
+    <h2>
+        ADMIN LOGIN
+    </h2>
+
+    <p style="text-align:center;">
+        Ingia ili kusimamia maombi ya huduma.
+    </p>
+
+
+    <form id="loginForm">
+
+        <label for="email">
+            Email ya Admin
+        </label>
+
+        <input
+            type="email"
+            id="email"
+            placeholder="Weka email ya Admin"
+            required
+        >
+
+
+        <label for="password">
+            Password
+        </label>
+
+        <input
+            type="password"
+            id="password"
+            placeholder="Weka password"
+            required
+        >
+
+
+        <button
+            type="submit"
+            id="loginButton">
+
+            INGIA ADMIN
+
+        </button>
+
+    </form>
+
+
+    <div id="message" class="message"></div>
+
+
+    <a
+        href="index.html"
+        class="back">
+
+        RUDI HOME
+
+    </a>
+
+</div>
+```
+
+</div>
+
+<footer>
+
+```
+Copyright 2026 - TEAL - ENG EMAKA GROUP
+```
+
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+const SUPABASE_URL =
+    "https://awkotcfeafnwfmmjmuwp.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_puqds6nFS82t77iNOA0jwQ_WX-_kpDF";
+
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+const form =
+    document.getElementById("loginForm");
+
+const button =
+    document.getElementById("loginButton");
+
+const message =
+    document.getElementById("message");
+
+
+form.addEventListener("submit", async function(event) {
+
+    event.preventDefault();
+
+    const email =
+        document.getElementById("email").value.trim();
+
+    const password =
+        document.getElementById("password").value;
+
+
+    button.disabled = true;
+
+    button.textContent =
+        "INAINGIA...";
+
+    message.style.display =
+        "none";
+
+
+    try {
+
+        const { data, error } =
+            await supabaseClient.auth.signInWithPassword({
+
+                email: email,
+
+                password: password
+
+            });
+
+
+        if (error) {
+
+            throw error;
+
+        }
+
+
+        if (!data.session) {
+
+            throw new Error(
+                "Login haikupata session."
+            );
+
+        }
+
+
+        window.location.href =
+            "admin.html";
+
+
+    } catch (error) {
+
+        message.textContent =
+            "Login imekataa: " +
+            error.message;
+
+        message.className =
+            "message error";
+
+        message.style.display =
+            "block";
+
+    }
+
+
+    button.disabled =
+        false;
+
+    button.textContent =
+        "INGIA ADMIN";
+
+});
+
+</script>
+
+</body>
+</html>

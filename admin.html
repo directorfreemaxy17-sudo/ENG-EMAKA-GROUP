@@ -1,0 +1,689 @@
+﻿```html
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADMIN PANEL - ENG EMAKA GROUP</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f2f4f7;
+            color: #222;
+        }
+
+        header {
+            background: #111827;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        header p {
+            margin: 7px 0 0;
+            color: #d1d5db;
+        }
+
+        .container {
+            width: 95%;
+            max-width: 1200px;
+            margin: 25px auto;
+        }
+
+        .top-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        button {
+            border: none;
+            padding: 11px 16px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .refresh {
+            background: #2563eb;
+            color: white;
+        }
+
+        .logout {
+            background: #dc2626;
+            color: white;
+        }
+
+        button:hover {
+            opacity: 0.85;
+        }
+
+        .message {
+            background: white;
+            padding: 14px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 5px solid #2563eb;
+        }
+
+        .error {
+            background: #fee2e2;
+            color: #991b1b;
+            border-left-color: #dc2626;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .stat {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 7px rgba(0,0,0,0.08);
+        }
+
+        .stat h3 {
+            margin: 0 0 10px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .stat strong {
+            font-size: 30px;
+        }
+
+        .requests {
+            display: grid;
+            gap: 18px;
+        }
+
+        .request {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .request-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .request-number {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .status {
+            padding: 7px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .accepted {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .progress {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .completed {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .unknown {
+            background: #e5e7eb;
+            color: #374151;
+        }
+
+        .info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .info div {
+            padding: 11px;
+            background: #f9fafb;
+            border-radius: 6px;
+        }
+
+        .description {
+            background: #f9fafb;
+            padding: 13px;
+            border-radius: 7px;
+            margin-bottom: 15px;
+        }
+
+        .actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .actions button {
+            background: #374151;
+            color: white;
+            font-size: 13px;
+        }
+
+        .empty {
+            background: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>TEAL</h1>
+    <p>ADMIN PANEL - ENG EMAKA GROUP</p>
+</header>
+
+<div class="container">
+
+    <div class="top-buttons">
+        <button class="refresh" onclick="loadRequests()">
+            REFRESH MAOMBI
+        </button>
+
+        <button class="logout" onclick="logout()">
+            TOKA
+        </button>
+    </div>
+
+    <div id="message" class="message">
+        Inapakia maombi...
+    </div>
+
+    <div class="stats">
+
+        <div class="stat">
+            <h3>MAOMBI YOTE</h3>
+            <strong id="total">0</strong>
+        </div>
+
+        <div class="stat">
+            <h3>PENDING</h3>
+            <strong id="pending">0</strong>
+        </div>
+
+        <div class="stat">
+            <h3>ACCEPTED</h3>
+            <strong id="accepted">0</strong>
+        </div>
+
+        <div class="stat">
+            <h3>IN PROGRESS</h3>
+            <strong id="progress">0</strong>
+        </div>
+
+        <div class="stat">
+            <h3>COMPLETED</h3>
+            <strong id="completed">0</strong>
+        </div>
+
+    </div>
+
+    <div id="requests" class="requests"></div>
+
+</div>
+
+
+<script>
+
+const SUPABASE_URL =
+    "https://awkotcfeafnwfmmjmuwp.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_puqds6nFS82t77iNOA0jwQ_WX-_kpDF";
+
+const TABLE =
+    "service_requests";
+
+
+async function loadRequests() {
+
+    const message =
+        document.getElementById("message");
+
+    const requestsBox =
+        document.getElementById("requests");
+
+    message.className = "message";
+    message.innerText = "Inapakia maombi...";
+
+    requestsBox.innerHTML = "";
+
+    try {
+
+        const url =
+            SUPABASE_URL +
+            "/rest/v1/" +
+            TABLE +
+            "?select=*" +
+            "&order=created_at.desc";
+
+
+        const response =
+            await fetch(url, {
+
+                method: "GET",
+
+                headers: {
+                    "apikey": SUPABASE_KEY,
+                    "Authorization":
+                        "Bearer " + SUPABASE_KEY
+                }
+
+            });
+
+
+        if (!response.ok) {
+
+            const errorText =
+                await response.text();
+
+            throw new Error(
+                "Supabase error " +
+                response.status +
+                ": " +
+                errorText
+            );
+        }
+
+
+        const data =
+            await response.json();
+
+
+        updateStats(data);
+
+
+        if (!data || data.length === 0) {
+
+            message.innerText =
+                "Hakuna maombi yaliyopatikana.";
+
+            requestsBox.innerHTML =
+                '<div class="empty">Hakuna maombi kwa sasa.</div>';
+
+            return;
+        }
+
+
+        message.innerText =
+            "Maombi " + data.length +
+            " yamepatikana.";
+
+
+        data.forEach(request => {
+
+            requestsBox.appendChild(
+                createRequestCard(request)
+            );
+
+        });
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        message.className =
+            "message error";
+
+        message.innerText =
+            "Imeshindikana kupakia maombi: " +
+            error.message;
+
+    }
+}
+
+
+function updateStats(data) {
+
+    document.getElementById("total").innerText =
+        data.length;
+
+
+    let pending = 0;
+    let accepted = 0;
+    let progress = 0;
+    let completed = 0;
+
+
+    data.forEach(item => {
+
+        const status =
+            String(item.status || "")
+            .trim()
+            .toUpperCase();
+
+
+        if (status === "PENDING") {
+            pending++;
+        }
+
+        if (status === "ACCEPTED") {
+            accepted++;
+        }
+
+        if (
+            status === "IN PROGRESS" ||
+            status === "IN_PROGRESS"
+        ) {
+            progress++;
+        }
+
+        if (status === "COMPLETED") {
+            completed++;
+        }
+
+    });
+
+
+    document.getElementById("pending").innerText =
+        pending;
+
+    document.getElementById("accepted").innerText =
+        accepted;
+
+    document.getElementById("progress").innerText =
+        progress;
+
+    document.getElementById("completed").innerText =
+        completed;
+}
+
+
+function createRequestCard(request) {
+
+    const card =
+        document.createElement("div");
+
+    card.className = "request";
+
+
+    const status =
+        String(request.status || "PENDING")
+        .trim()
+        .toUpperCase();
+
+
+    let statusClass = "unknown";
+
+
+    if (status === "PENDING") {
+        statusClass = "pending";
+    }
+
+    else if (status === "ACCEPTED") {
+        statusClass = "accepted";
+    }
+
+    else if (
+        status === "IN PROGRESS" ||
+        status === "IN_PROGRESS"
+    ) {
+        statusClass = "progress";
+    }
+
+    else if (status === "COMPLETED") {
+        statusClass = "completed";
+    }
+
+
+    card.innerHTML = `
+
+        <div class="request-header">
+
+            <div class="request-number">
+                Namba ya Ombi:
+                ${escapeHTML(request.request_number)}
+            </div>
+
+            <div class="status ${statusClass}">
+                ${escapeHTML(status)}
+            </div>
+
+        </div>
+
+
+        <div class="info">
+
+            <div>
+                <b>Jina:</b><br>
+                ${escapeHTML(request.customer_name)}
+            </div>
+
+            <div>
+                <b>Simu:</b><br>
+                ${escapeHTML(request.customer_phone)}
+            </div>
+
+            <div>
+                <b>Eneo:</b><br>
+                ${escapeHTML(request.location)}
+            </div>
+
+            <div>
+                <b>Huduma:</b><br>
+                ${escapeHTML(request.service)}
+            </div>
+
+            <div>
+                <b>Tarehe:</b><br>
+                ${escapeHTML(
+                    request.created_at
+                    ? new Date(request.created_at)
+                        .toLocaleString("sw-TZ")
+                    : "Haijulikani"
+                )}
+            </div>
+
+        </div>
+
+
+        <div class="description">
+
+            <b>Maelezo:</b><br>
+
+            ${escapeHTML(request.description)}
+
+        </div>
+
+
+        <div class="actions">
+
+            <button onclick="changeStatus('${request.id}', 'PENDING')">
+                PENDING
+            </button>
+
+            <button onclick="changeStatus('${request.id}', 'ACCEPTED')">
+                ACCEPTED
+            </button>
+
+            <button onclick="changeStatus('${request.id}', 'IN PROGRESS')">
+                IN PROGRESS
+            </button>
+
+            <button onclick="changeStatus('${request.id}', 'COMPLETED')">
+                COMPLETED
+            </button>
+
+        </div>
+
+    `;
+
+
+    return card;
+}
+
+
+async function changeStatus(id, newStatus) {
+
+    if (!id) {
+
+        alert("ID ya ombi haijapatikana.");
+
+        return;
+    }
+
+
+    const confirmChange =
+        confirm(
+            "Unataka kubadilisha status kuwa " +
+            newStatus +
+            "?"
+        );
+
+
+    if (!confirmChange) {
+        return;
+    }
+
+
+    try {
+
+        const url =
+            SUPABASE_URL +
+            "/rest/v1/" +
+            TABLE +
+            "?id=eq." +
+            encodeURIComponent(id);
+
+
+        const response =
+            await fetch(url, {
+
+                method: "PATCH",
+
+                headers: {
+
+                    "Content-Type":
+                        "application/json",
+
+                    "apikey":
+                        SUPABASE_KEY,
+
+                    "Authorization":
+                        "Bearer " +
+                        SUPABASE_KEY,
+
+                    "Prefer":
+                        "return=minimal"
+
+                },
+
+                body: JSON.stringify({
+                    status: newStatus
+                })
+
+            });
+
+
+        if (!response.ok) {
+
+            const errorText =
+                await response.text();
+
+            throw new Error(
+                "Imeshindikana kubadilisha status: " +
+                response.status +
+                " " +
+                errorText
+            );
+        }
+
+
+        alert(
+            "Status imebadilishwa kuwa " +
+            newStatus
+        );
+
+
+        loadRequests();
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(error.message);
+
+    }
+
+}
+
+
+function escapeHTML(value) {
+
+    if (
+        value === null ||
+        value === undefined ||
+        value === ""
+    ) {
+        return "Hakuna taarifa";
+    }
+
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+
+function logout() {
+
+    window.location.href =
+        "index.html";
+
+}
+
+
+loadRequests();
+
+</script>
+
+</body>
+</html>
+```

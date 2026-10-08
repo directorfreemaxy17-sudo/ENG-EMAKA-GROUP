@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>OMBA HUDUMA - ENG EMAKA GROUP</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            color: #073b4c;
+        }
+
+        header {
+            background: #073b4c;
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 30px;
+        }
+
+        header p {
+            margin: 8px 0 0;
+            color: #06d6a0;
+            font-weight: bold;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 600px;
+            margin: 30px auto;
+        }
+
+        .form-box {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.10);
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 0;
+            color: #073b4c;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #ccd6dd;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #118ab2;
+        }
+
+        textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            margin-top: 22px;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background: #06d6a0;
+            color: #073b4c;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background: #05bd8d;
+        }
+
+        .submit-btn:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+        }
+
+        .message {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        .success {
+            background: #e6fff7;
+            border-left: 5px solid #06d6a0;
+            color: #073b4c;
+        }
+
+        .error {
+            background: #ffe8e8;
+            border-left: 5px solid #e63946;
+            color: #9b2226;
+        }
+
+        .result {
+            display: none;
+            margin-top: 20px;
+            padding: 18px;
+            border-radius: 10px;
+            background: #e6fff7;
+            border-left: 5px solid #06d6a0;
+        }
+
+        .result h3 {
+            margin-top: 0;
+        }
+
+        .pending {
+            display: inline-block;
+            background: #ffd166;
+            color: #073b4c;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+            background: #118ab2;
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        footer {
+            margin-top: 40px;
+            background: #073b4c;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>TEAL</h1>
+    <p>ENG EMAKA GROUP</p>
+</header>
+
+<div class="container">
+
+    <div class="form-box">
+
+        <h2>OMBA HUDUMA</h2>
+
+        <form id="requestForm">
+
+            <label for="name">Jina lako kamili</label>
+
+            <input
+                type="text"
+                id="name"
+                placeholder="Andika jina lako"
+                required
+            >
+
+            <label for="phone">Namba ya simu</label>
+
+            <input
+                type="tel"
+                id="phone"
+                placeholder="Mfano: 07XXXXXXXX"
+                required
+            >
+
+            <label for="location">Eneo ulipo</label>
+
+            <input
+                type="text"
+                id="location"
+                placeholder="Mfano: Lamadi, Simiyu"
+                required
+            >
+
+            <label for="service">Chagua huduma</label>
+
+            <select id="service" required>
+
+                <option value="">
+                    -- Chagua huduma --
+                </option>
+
+                <option value="Electrical">
+                    Electrical
+                </option>
+
+                <option value="Wi-Fi & Networking">
+                    Wi-Fi & Networking
+                </option>
+
+                <option value="CCTV Camera">
+                    CCTV Camera
+                </option>
+
+                <option value="Security Systems">
+                    Security Systems
+                </option>
+
+            </select>
+
+            <label for="description">
+                Eleza unachohitaji
+            </label>
+
+            <textarea
+                id="description"
+                placeholder="Mfano: Nahitaji kufungwa CCTV camera 4..."
+                required
+            ></textarea>
+
+            <button
+                type="submit"
+                class="submit-btn"
+                id="submitButton">
+
+                TUMA OMBI
+
+            </button>
+
+        </form>
+
+        <div
+            id="successMessage"
+            class="message success">
+
+            Ombi lako limetumwa kikamilifu.
+
+        </div>
+
+        <div
+            id="errorMessage"
+            class="message error">
+
+            Kuna tatizo limetokea. Tafadhali jaribu tena.
+
+        </div>
+
+        <div
+            class="result"
+            id="result">
+
+            <h3>
+                Ombi limetumwa!
+            </h3>
+
+            <p>
+
+                <strong>
+                    Namba ya ombi:
+                </strong>
+
+                <span id="requestNumber"></span>
+
+            </p>
+
+            <p>
+
+                <strong>
+                    Status:
+                </strong>
+
+                <span class="pending">
+                    PENDING
+                </span>
+
+            </p>
+
+            <p>
+                Tutawasiliana nawe kupitia namba
+                uliyoandika.
+            </p>
+
+        </div>
+
+        <a
+            href="service.html"
+            class="back">
+
+            RUDI KWENYE HUDUMA
+
+        </a>
+
+    </div>
+
+</div>
+
+<footer>
+
+    Copyright 2026 - TEAL - ENG EMAKA GROUP
+
+</footer>
+
+
+<script>
+
+/* ==========================================
+   SUPABASE
+   ========================================== */
+
+const SUPABASE_URL =
+    "https://awkotcfeafnwfmmjmuwp.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_puqds6nFS82t77iNOA0jwQ_WX-_kpDF";
+
+
+/* ==========================================
+   FORM
+   ========================================== */
+
+const form =
+    document.getElementById("requestForm");
+
+const submitButton =
+    document.getElementById("submitButton");
+
+const result =
+    document.getElementById("result");
+
+const requestNumberElement =
+    document.getElementById("requestNumber");
+
+const successMessage =
+    document.getElementById("successMessage");
+
+const errorMessage =
+    document.getElementById("errorMessage");
+
+
+form.addEventListener("submit", async function(event) {
+
+    event.preventDefault();
+
+
+    /* Ficha taarifa */
+
+    const name =
+        document.getElementById("name").value.trim();
+
+    const phone =
+        document.getElementById("phone").value.trim();
+
+    const location =
+        document.getElementById("location").value.trim();
+
+    const service =
+        document.getElementById("service").value;
+
+    const description =
+        document.getElementById("description").value.trim();
+
+
+    /* Tengeneza namba ya ombi */
+
+    const randomNumber =
+        Math.floor(1000 + Math.random() * 9000);
+
+    const requestNumber =
+        "EMK-2026-" + randomNumber;
+
+
+    /* Zuia button wakati inatuma */
+
+    submitButton.disabled = true;
+
+    submitButton.textContent =
+        "INATUMA...";
+
+
+    successMessage.style.display =
+        "none";
+
+    errorMessage.style.display =
+        "none";
+
+    result.style.display =
+        "none";
+
+
+    /* Tuma taarifa Supabase */
+
+    try {
+
+        const response =
+            await fetch(
+                SUPABASE_URL +
+                "/rest/v1/service_requests",
+                {
+                    method: "POST",
+
+                    headers: {
+
+                        "Content-Type":
+                            "application/json",
+
+                        "apikey":
+                            SUPABASE_KEY,
+
+                        "Authorization":
+                            "Bearer " + SUPABASE_KEY,
+
+                        "Prefer":
+                            "return=minimal"
+
+                    },
+
+                    body: JSON.stringify({
+
+                        request_number:
+                            requestNumber,
+
+                        /* MUHIMU:
+                           Majina haya yanafanana
+                           na columns za Supabase */
+
+                        customer_name:
+                            name,
+
+                        customer_phone:
+                            phone,
+
+                        location:
+                            location,
+
+                        service:
+                            service,
+
+                        description:
+                            description,
+
+                        status:
+                            "PENDING"
+
+                    })
+
+                }
+            );
+
+
+        /* Kama Supabase imekataa */
+
+        if (!response.ok) {
+
+            const errorText =
+                await response.text();
+
+            console.log(
+                "Supabase error:",
+                errorText
+            );
+
+            throw new Error(
+                errorText ||
+                "Supabase imekataa ombi"
+            );
+
+        }
+
+
+        /* Mafanikio */
+
+        requestNumberElement.textContent =
+            requestNumber;
+
+        result.style.display =
+            "block";
+
+        successMessage.style.display =
+            "block";
+
+
+        /* Safisha form */
+
+        form.reset();
+
+
+        /* Peleka chini kuona namba */
+
+        window.scrollTo({
+
+            top:
+                document.body.scrollHeight,
+
+            behavior:
+                "smooth"
+
+        });
+
+
+    } catch (error) {
+
+        console.log(
+            "ERROR:",
+            error
+        );
+
+        errorMessage.textContent =
+            "Ombi halikutumwa. Tatizo: " +
+            error.message;
+
+        errorMessage.style.display =
+            "block";
+
+    }
+
+
+    /* Rudisha button */
+
+    submitButton.disabled =
+        false;
+
+    submitButton.textContent =
+        "TUMA OMBI";
+
+});
+
+</script>
+
+</body>
+</html>

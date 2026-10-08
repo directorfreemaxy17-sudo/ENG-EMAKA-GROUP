@@ -1,0 +1,703 @@
+```html
+<!DOCTYPE html>
+<html lang="sw">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>TRACK OMBI - TEAL</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            margin: 0;
+
+            font-family: Arial, sans-serif;
+
+            background: #f2f4f7;
+
+            color: #222;
+        }
+
+
+        header {
+
+            background: #111827;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 25px 15px;
+        }
+
+
+        header h1 {
+
+            margin: 0;
+
+            font-size: 30px;
+        }
+
+
+        header p {
+
+            margin: 8px 0 0;
+
+            color: #d1d5db;
+        }
+
+
+        .container {
+
+            width: 92%;
+
+            max-width: 650px;
+
+            margin: 30px auto;
+        }
+
+
+        .box {
+
+            background: white;
+
+            padding: 25px;
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 3px 12px rgba(0,0,0,0.10);
+        }
+
+
+        h2 {
+
+            margin-top: 0;
+
+            text-align: center;
+        }
+
+
+        label {
+
+            display: block;
+
+            font-weight: bold;
+
+            margin-bottom: 8px;
+        }
+
+
+        input {
+
+            width: 100%;
+
+            padding: 14px;
+
+            border: 1px solid #ccc;
+
+            border-radius: 7px;
+
+            font-size: 16px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .search-btn {
+
+            width: 100%;
+
+            background: #2563eb;
+
+            color: white;
+
+            border: none;
+
+            padding: 14px;
+
+            border-radius: 7px;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+
+        .search-btn:hover {
+
+            opacity: 0.85;
+        }
+
+
+        #message {
+
+            margin-top: 15px;
+
+            padding: 12px;
+
+            border-radius: 7px;
+
+            display: none;
+        }
+
+
+        .result {
+
+            margin-top: 20px;
+
+            display: none;
+        }
+
+
+        .row {
+
+            background: #f9fafb;
+
+            padding: 12px;
+
+            margin-bottom: 8px;
+
+            border-radius: 6px;
+        }
+
+
+        .status {
+
+            display: inline-block;
+
+            padding: 9px 15px;
+
+            border-radius: 20px;
+
+            font-weight: bold;
+
+            margin-top: 5px;
+        }
+
+
+        .pending {
+
+            background: #fef3c7;
+
+            color: #92400e;
+        }
+
+
+        .accepted {
+
+            background: #dcfce7;
+
+            color: #166534;
+        }
+
+
+        .progress {
+
+            background: #dbeafe;
+
+            color: #1e40af;
+        }
+
+
+        .completed {
+
+            background: #d1fae5;
+
+            color: #065f46;
+        }
+
+
+        .unknown {
+
+            background: #e5e7eb;
+
+            color: #374151;
+        }
+
+
+        .back {
+
+            display: block;
+
+            text-align: center;
+
+            margin-top: 20px;
+
+            color: #2563eb;
+
+            text-decoration: none;
+
+            font-weight: bold;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <h1>TEAL</h1>
+
+    <p>TRACK OMBI - ENG EMAKA GROUP</p>
+
+</header>
+
+
+<div class="container">
+
+
+    <div class="box">
+
+
+        <h2>Fuatilia Ombi Lako</h2>
+
+
+        <p>
+            Weka namba ya ombi uliyopewa baada ya
+            kutuma maombi.
+        </p>
+
+
+        <label for="requestNumber">
+            Namba ya Ombi
+        </label>
+
+
+        <input
+            type="text"
+            id="requestNumber"
+            placeholder="Mfano: EMK-2026-1316"
+        >
+
+
+        <button
+            class="search-btn"
+            onclick="trackRequest()"
+        >
+            TAFUTA OMBI
+        </button>
+
+
+        <div id="message"></div>
+
+
+        <div id="result" class="result">
+
+            <h2>Taarifa za Ombi</h2>
+
+
+            <div class="row">
+                <b>Namba ya Ombi:</b><br>
+                <span id="requestNumberResult"></span>
+            </div>
+
+
+            <div class="row">
+                <b>Jina:</b><br>
+                <span id="customerName"></span>
+            </div>
+
+
+            <div class="row">
+                <b>Simu:</b><br>
+                <span id="customerPhone"></span>
+            </div>
+
+
+            <div class="row">
+                <b>Eneo:</b><br>
+                <span id="location"></span>
+            </div>
+
+
+            <div class="row">
+                <b>Huduma:</b><br>
+                <span id="service"></span>
+            </div>
+
+
+            <div class="row">
+                <b>Maelezo:</b><br>
+                <span id="description"></span>
+            </div>
+
+
+            <div class="row">
+                <b>Tarehe ya Ombi:</b><br>
+                <span id="createdAt"></span>
+            </div>
+
+
+            <div class="row">
+
+                <b>Status:</b><br>
+
+                <span
+                    id="status"
+                    class="status"
+                ></span>
+
+            </div>
+
+
+        </div>
+
+
+        <a
+            href="index.html"
+            class="back"
+        >
+            RUDI KWENYE HOME
+        </a>
+
+
+    </div>
+
+</div>
+
+
+<script>
+
+
+const SUPABASE_URL =
+    "https://awkotcfeafnwfmmjmuwp.supabase.co";
+
+
+const SUPABASE_KEY =
+    "sb_publishable_puqds6nFS82t77iNOA0jwQ_WX-_kpDF";
+
+
+const TABLE =
+    "service_requests";
+
+
+async function trackRequest() {
+
+
+    const input =
+        document.getElementById(
+            "requestNumber"
+        );
+
+
+    const requestNumber =
+        input.value.trim();
+
+
+    const message =
+        document.getElementById(
+            "message"
+        );
+
+
+    const result =
+        document.getElementById(
+            "result"
+        );
+
+
+    result.style.display =
+        "none";
+
+
+    if (!requestNumber) {
+
+        showMessage(
+            "Tafadhali weka namba ya ombi.",
+            true
+        );
+
+        return;
+    }
+
+
+    showMessage(
+        "Inatafuta ombi...",
+        false
+    );
+
+
+    try {
+
+
+        const url =
+            SUPABASE_URL +
+            "/rest/v1/" +
+            TABLE +
+            "?request_number=eq." +
+            encodeURIComponent(
+                requestNumber
+            ) +
+            "&select=*";
+
+
+        const response =
+            await fetch(
+                url,
+                {
+
+                    method: "GET",
+
+                    headers: {
+
+                        "apikey":
+                            SUPABASE_KEY,
+
+                        "Authorization":
+                            "Bearer " +
+                            SUPABASE_KEY
+
+                    }
+
+                }
+            );
+
+
+        if (!response.ok) {
+
+            const errorText =
+                await response.text();
+
+            throw new Error(
+                response.status +
+                ": " +
+                errorText
+            );
+        }
+
+
+        const data =
+            await response.json();
+
+
+        if (
+            !data ||
+            data.length === 0
+        ) {
+
+            showMessage(
+                "Namba ya ombi haijapatikana.",
+                true
+            );
+
+            return;
+        }
+
+
+        const request =
+            data[0];
+
+
+        document.getElementById(
+            "requestNumberResult"
+        ).innerText =
+            request.request_number || "";
+
+
+        document.getElementById(
+            "customerName"
+        ).innerText =
+            request.customer_name || "";
+
+
+        document.getElementById(
+            "customerPhone"
+        ).innerText =
+            request.customer_phone || "";
+
+
+        document.getElementById(
+            "location"
+        ).innerText =
+            request.location || "";
+
+
+        document.getElementById(
+            "service"
+        ).innerText =
+            request.service || "";
+
+
+        document.getElementById(
+            "description"
+        ).innerText =
+            request.description || "";
+
+
+        document.getElementById(
+            "createdAt"
+        ).innerText =
+
+            request.created_at
+            ? new Date(
+                request.created_at
+              ).toLocaleString("sw-TZ")
+
+            : "";
+
+
+        const status =
+            String(
+                request.status || ""
+            )
+            .trim()
+            .toUpperCase();
+
+
+        const statusElement =
+            document.getElementById(
+                "status"
+            );
+
+
+        statusElement.innerText =
+            status;
+
+
+        statusElement.className =
+            "status";
+
+
+        if (
+            status === "PENDING"
+        ) {
+
+            statusElement.classList.add(
+                "pending"
+            );
+
+        }
+
+        else if (
+            status === "ACCEPTED"
+        ) {
+
+            statusElement.classList.add(
+                "accepted"
+            );
+
+        }
+
+        else if (
+            status === "IN PROGRESS" ||
+            status === "IN_PROGRESS"
+        ) {
+
+            statusElement.classList.add(
+                "progress"
+            );
+
+        }
+
+        else if (
+            status === "COMPLETED"
+        ) {
+
+            statusElement.classList.add(
+                "completed"
+            );
+
+        }
+
+        else {
+
+            statusElement.classList.add(
+                "unknown"
+            );
+
+        }
+
+
+        message.style.display =
+            "none";
+
+
+        result.style.display =
+            "block";
+
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        showMessage(
+            "Imeshindikana kutafuta ombi: " +
+            error.message,
+            true
+        );
+
+    }
+
+}
+
+
+function showMessage(
+    text,
+    isError
+) {
+
+    const message =
+        document.getElementById(
+            "message"
+        );
+
+
+    message.innerText =
+        text;
+
+
+    message.style.display =
+        "block";
+
+
+    if (isError) {
+
+        message.style.background =
+            "#fee2e2";
+
+        message.style.color =
+            "#991b1b";
+
+    }
+
+    else {
+
+        message.style.background =
+            "#dbeafe";
+
+        message.style.color =
+            "#1e40af";
+
+    }
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
+```
