@@ -2,12 +2,15 @@
 
 <html lang="sw">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GROUP - ENG EMAKA GROUP</title>
 
 ```
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GROUP - ENG EMAKA GROUP</title>
+
 <style>
+
     * {
         box-sizing: border-box;
     }
@@ -24,21 +27,15 @@
         color: white;
         padding: 18px 6%;
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
-        flex-wrap: wrap;
-        gap: 10px;
     }
 
     .logo {
         font-size: 28px;
         font-weight: bold;
         color: #06d6a0;
-    }
-
-    .group {
-        font-size: 18px;
-        font-weight: bold;
+        text-align: center;
     }
 
     .hero {
@@ -133,7 +130,13 @@
     }
 
     .symbol {
-        font-size: 38px;
+        display: inline-block;
+        font-size: 16px;
+        font-weight: bold;
+        color: #073b4c;
+        background: #06d6a0;
+        padding: 8px 15px;
+        border-radius: 20px;
         margin-bottom: 10px;
     }
 
@@ -169,15 +172,21 @@
     }
 
     @media (max-width: 500px) {
-        .top {
-            justify-content: center;
-            text-align: center;
+
+        .logo {
+            font-size: 23px;
         }
 
         .hero h1 {
             font-size: 28px;
         }
+
+        .hero p {
+            font-size: 16px;
+        }
+
     }
+
 </style>
 ```
 
@@ -186,121 +195,184 @@
 <body>
 
 <header class="top">
-    <div class="logo">TEAL</div>
-    <div class="group">ENG EMAKA GROUP</div>
+
+```
+<div class="logo">
+    ENG EMAKA GROUP
+</div>
+```
+
 </header>
 
 <main>
 
-```
 <section class="hero">
-    <h1>ENG EMAKA GROUP</h1>
 
-    <p>
-        Karibu kwenye ENG EMAKA GROUP.<br>
-        Umoja wetu ni nguvu yetu.
-    </p>
+```
+<h1>
+    ENG EMAKA GROUP
+</h1>
 
-    <div class="icon">GROUP</div>
+<p>
+    Karibu kwenye ENG EMAKA GROUP.<br>
+    Umoja wetu ni nguvu yetu.
+</p>
+
+<div class="icon">
+    GROUP
+</div>
+```
+
 </section>
 
 <section class="content">
 
-    <h2>Karibu Members</h2>
+```
+<h2>
+    Karibu Members
+</h2>
 
-    <p>
-        Hapa ni sehemu ya wanachama wetu, taarifa,
-        picha na mawasiliano ya group.
-    </p>
+<p>
+    Hapa ni sehemu ya wanachama wetu, taarifa,
+    picha na mawasiliano ya group.
+</p>
 
-    <h2>Wanachama Wetu</h2>
 
-    <div class="members">
+<h2>
+    Wanachama Wetu
+</h2>
 
-        <div class="member">
 
-            <img
-                src="assets/eng-emaka-work.png.jpg"
-                alt="FREEMAN akifanya kazi za umeme na AMOS akifunga Wi-Fi"
-                onerror="this.alt='Picha haijapatikana. Hakikisha jina la faili ni eng-emaka-work.png.jpg ndani ya assets.'"
-            >
+<div class="members">
 
-            <h3>FREEMAN &amp; AMOS</h3>
 
-            <p>
-                <strong>Timu ya ENG EMAKA GROUP</strong>
-            </p>
+    <div class="member">
 
-            <p>
-                Wataalamu wa Electrical, Wi-Fi,
-                Networking na Security Systems.
-            </p>
+        <img
+            src="assets/eng-emaka-work.png.jpg"
+            alt="FREEMAN na AMOS wakifanya kazi za ENG EMAKA GROUP"
+            onerror="this.alt='Picha haijapatikana. Hakikisha faili eng-emaka-work.png.jpg lipo ndani ya folder assets.'"
+        >
 
-        </div>
+        <h3>
+            FREEMAN &amp; AMOS
+        </h3>
 
-    </div>
+        <p>
+            <strong>Timu ya ENG EMAKA GROUP</strong>
+        </p>
 
-    <h2>Huduma Zetu</h2>
-
-    <div class="service-list">
-
-        <div class="service-card">
-            <div class="symbol">?</div>
-
-            <h3>Electrical</h3>
-
-            <p>
-                Ufungaji na matengenezo
-                ya mifumo ya umeme.
-            </p>
-        </div>
-
-        <div class="service-card">
-            <div class="symbol">??</div>
-
-            <h3>Wi-Fi &amp; Networking</h3>
-
-            <p>
-                Ufungaji wa Wi-Fi,
-                router na mitandao.
-            </p>
-        </div>
-
-        <div class="service-card">
-            <div class="symbol">??</div>
-
-            <h3>CCTV Camera</h3>
-
-            <p>
-                Ufungaji wa kamera
-                za ulinzi.
-            </p>
-        </div>
-
-        <div class="service-card">
-            <div class="symbol">??</div>
-
-            <h3>Security Systems</h3>
-
-            <p>
-                Mifumo ya kisasa
-                ya usalama.
-            </p>
-        </div>
+        <p>
+            Wataalamu wa Electrical, Wi-Fi,
+            Networking na Security Systems.
+        </p>
 
     </div>
 
-    <a class="back" href="index.html">
-        RUDI NYUMBANI
-    </a>
+
+</div>
+
+
+<h2>
+    Huduma Zetu
+</h2>
+
+
+<div class="service-list">
+
+
+    <div class="service-card">
+
+        <div class="symbol">
+            ELECTRICAL
+        </div>
+
+        <h3>
+            Electrical
+        </h3>
+
+        <p>
+            Ufungaji na matengenezo
+            ya mifumo ya umeme.
+        </p>
+
+    </div>
+
+
+    <div class="service-card">
+
+        <div class="symbol">
+            NETWORK
+        </div>
+
+        <h3>
+            Wi-Fi &amp; Networking
+        </h3>
+
+        <p>
+            Ufungaji wa Wi-Fi,
+            router na mitandao.
+        </p>
+
+    </div>
+
+
+    <div class="service-card">
+
+        <div class="symbol">
+            CCTV
+        </div>
+
+        <h3>
+            CCTV Camera
+        </h3>
+
+        <p>
+            Ufungaji wa kamera
+            za ulinzi.
+        </p>
+
+    </div>
+
+
+    <div class="service-card">
+
+        <div class="symbol">
+            SECURITY
+        </div>
+
+        <h3>
+            Security Systems
+        </h3>
+
+        <p>
+            Mifumo ya kisasa
+            ya usalama.
+        </p>
+
+    </div>
+
+
+</div>
+
+
+<a class="back" href="index.html">
+    RUDI NYUMBANI
+</a>
+```
 
 </section>
-```
 
 </main>
 
 <footer>
-    <p>Copyright 2026 - TEAL - ENG EMAKA GROUP</p>
+
+```
+<p>
+    Copyright 2026 - ENG EMAKA GROUP
+</p>
+```
+
 </footer>
 
 </body>
